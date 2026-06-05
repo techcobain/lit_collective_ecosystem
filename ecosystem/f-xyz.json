@@ -1,0 +1,15 @@
+{
+  "name": "f.xyz",
+  "description": "The Operating System for Autonomous Trading",
+  "url": "https://f.xyz/",
+  "twitter": "",
+  "discord": "",
+  "telegram": "",
+  "logo": "/logos/f-xyz_logo.png",
+  "categories": [
+    "Agents",
+    "Apps"
+  ],
+  "status": "Live",
+  "official": false
+}
