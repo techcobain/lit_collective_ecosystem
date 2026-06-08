@@ -71,7 +71,7 @@
       "description": "",
       "url": "https://ccxt.com/",
       "twitter": "",
-      "logo": "",
+      "logo": "/logos/ccxt_logo.svg",
       "categories": [
         "Developers"
       ],
@@ -625,5 +625,5 @@
       "official": false
     }
   ],
-  "generatedAt": "2026-06-05T18:41:20.477Z"
+  "generatedAt": "2026-06-08T17:16:28.805Z"
 }
