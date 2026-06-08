@@ -1,0 +1,14 @@
+{
+  "name": "Insilico Terminal",
+  "description": "Trader-friendly professional grade order, position and execution management system.",
+  "url": "https://insilicoterminal.com/",
+  "twitter": "https://x.com/InsilicoTrading",
+  "discord": "",
+  "telegram": "",
+  "logo": "/logos/insilico-terminal_logo.jpg",
+  "categories": [
+    "Terminal"
+  ],
+  "status": "Live",
+  "official": false
+}
