@@ -562,7 +562,7 @@
     },
     {
       "slug": "rust-sdk-by-yeule0",
-      "name": "Rust SDK by yeule0",
+      "name": "Rust Signer by yeule0",
       "description": "Native Rust cryptographic signer for the Lighter DEX protocol",
       "url": "https://github.com/yeule0/lighter-rs",
       "twitter": "",
@@ -657,5 +657,5 @@
       "official": false
     }
   ],
-  "generatedAt": "2026-06-09T09:21:34.891Z"
+  "generatedAt": "2026-06-09T09:38:21.285Z"
 }
