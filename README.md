@@ -2,15 +2,18 @@
 
 Public ecosystem data for [Lit Hub](https://www.lit-hub.org).
 
-This repository is the source for project listings shown on Lit Hub. Each project is stored as a JSON file in `ecosystem/`, logos live in `public/logos/`, and `public/ecosystem.json` is the generated index consumed by the website.
+This repository is the source for project listings and requests for protocol shown on Lit Hub. Each project is stored as a JSON file in `ecosystem/`, RFPs are stored in `rfps/`, logos live in `public/logos/`, and generated indexes in `public/` are consumed by the website.
 
 ## Repository Structure
 
 ```txt
 ecosystem/<slug>.json          Project listing data
+rfps/<slug>.json               Request for Protocol data
 public/logos/<slug>_logo.<ext> Logo assets
 public/ecosystem.json          Generated project index
+public/rfps.json               Generated RFP index
 scripts/build-ecosystem.mjs    Index builder
+scripts/build-rfps.mjs         RFP index builder
 .github/workflows/build-ecosystem.yml
 ```
 
@@ -62,6 +65,50 @@ Open a pull request that removes the project JSON file from `ecosystem/`.
 
 If the project has a logo that is no longer used by any other listing, remove the related file from `public/logos/` in the same pull request.
 
+## Add An RFP
+
+RFPs are community requests for things people want builders to create.
+
+1. Create a new JSON file in `rfps/`.
+   - Use a lowercase slug with hyphens, for example `portfolio-pnl-dashboard.json`.
+   - The slug is taken from the filename.
+2. Fill out the title, summary, description, category, status, and creation date.
+3. Add optional links if useful.
+4. Add public contact details only if the submitter explicitly wants builders to contact them publicly.
+5. Open a pull request against this repository.
+
+Example:
+
+```json
+{
+  "title": "Portfolio PnL dashboard",
+  "summary": "A dashboard showing realized and unrealized PnL across Lighter accounts.",
+  "description": "Builders should be able to track account-level PnL, open positions, funding, and historical performance.",
+  "category": "Data",
+  "status": "Open",
+  "createdAt": "2026-06-10",
+  "links": [],
+  "contact": {
+    "channel": "telegram",
+    "handle": "@example"
+  }
+}
+```
+
+If the submitter does not want their contact to be public, use:
+
+```json
+"contact": null
+```
+
+Do not add private submitter contact details to public RFP files.
+
+## Edit Or Remove An RFP
+
+To edit an RFP, change the relevant file in `rfps/` and open a pull request.
+
+To remove an RFP, open a pull request that removes the RFP JSON file from `rfps/`.
+
 ## Logo Guidelines
 
 Logos should be stored in `public/logos/`.
@@ -110,29 +157,32 @@ The first category is treated as the primary category on the ecosystem map.
 
 ## Generated Index
 
-The website does not fetch every file in `ecosystem/` individually. It fetches:
+The website does not fetch every source file individually. It fetches generated indexes:
 
 ```txt
 public/ecosystem.json
+public/rfps.json
 ```
 
-That file is generated from all project JSON files.
+Those files are generated from all project and RFP JSON files.
 
 After changes are merged into `main`, the GitHub Action in `.github/workflows/build-ecosystem.yml` runs:
 
 ```bash
 node scripts/build-ecosystem.mjs
+node scripts/build-rfps.mjs
 ```
 
-If `public/ecosystem.json` changes, the action commits the regenerated index back to `main`.
+If `public/ecosystem.json` or `public/rfps.json` changes, the action commits the regenerated index back to `main`.
 
 You can also regenerate it locally before opening a pull request:
 
 ```bash
 node scripts/build-ecosystem.mjs
+node scripts/build-rfps.mjs
 ```
 
-Then include `public/ecosystem.json` in your commit if it changed.
+Then include the generated file in `public/` in your commit if it changed.
 
 ## Review Notes
 
@@ -140,6 +190,7 @@ Listings are for discovery and are not endorsements. Maintainers may edit, rejec
 
 Do not add:
 
+- Private submitter contact details.
 - Spam or referral-only listings.
 - Phishing, impersonation, malware, or misleading links.
 - Claims that cannot be verified from the project’s public materials.
